@@ -39,3 +39,11 @@ As a Designer I would like:
     - Provide a functional and engaging game without errors.
 
 
+## Design and Flow
+
+### Flow Chart
+
+[Lucid Chart](https://www.lucidchart.com/) was used to plan the flow of the program.
+
+![The Game Flow Chart](assets/images/the_hangman_flowchart.webp)
+
