@@ -1,14 +1,36 @@
 import sys
 from time import sleep
 
-# Functions for printing the string variables used for storytelling
 
+# Here to be functions for creating a typing and text delay
 
-def intro():
+def typing_effect(text):
     '''
     Creates a typing effect for the story intro string
     '''
+    for char in text:
+        sleep(0.08)
+        sys.stdout.write(char)
+        sys.stdout.flush()
+    return text
 
+
+def text_delay_effect(self):
+    '''
+    Delays printing the blocks of text
+    '''
+    # loop through objects here and then:
+    sleep(1.5)
+
+
+# Functions for printing the string variables used for storytelling
+
+def intro():
+    '''
+    Prints the story intro with the typing and text delay effects
+    '''
+
+    # need to turn it into objects:
     story_intro = '''
     "Uh, it's very dark tonight in the forest...
     Hold on...
@@ -34,9 +56,5 @@ def intro():
     It would be better to know, that I was already here... Just in case.
     Now, which direction should I go?"
     '''
-
-    for char in story_intro:
-        sleep(0.08)
-        sys.stdout.write(char)
-        sys.stdout.flush()
+    typing_effect(story_intro)
     return story_intro
