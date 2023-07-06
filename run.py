@@ -8,3 +8,4 @@ print(congrats)
 print(hangman[1])
 
 intro()
+meet_the_murderer()
