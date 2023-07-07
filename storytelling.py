@@ -4,7 +4,6 @@ from time import sleep
 
 # Functions for managing of the text output used for storytelling
 
-
 def small_text_bits(list):
     '''
     Displays small blocks of text one at the time
