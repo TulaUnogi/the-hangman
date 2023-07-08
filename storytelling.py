@@ -2,6 +2,7 @@ import sys
 import os
 from time import sleep
 
+
 # Functions for managing of the text output used for storytelling
 
 def small_text_bits(list):
