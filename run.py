@@ -32,8 +32,8 @@ def small_text_bits(list):
             sleep(0.07)
             sys.stdout.write(char)
             sys.stdout.flush()
-        sleep(1)
-        clear_terminal()
+    sleep(1)
+    clear_terminal()
     return text
 
 # Storytelling functions
@@ -45,14 +45,26 @@ def intro():
     '''
     os.system("clear")
     name = input("Please enter your name: \n")
-    loading_bar = ["********************************************",
+    loading_bar = ["******************************************** \n",
                    "Your game starts now!"]
     print(f"{Fore.YELLOW}Loading The Hangman...")
     sleep(1)
     print(small_text_bits(loading_bar), )
     sleep(1.3)
     os.system("clear")
-    small_text_bits(story_intro)
+
+    """
+    prints 1 letter at the time, to be fixed
+    """
+    def append_username(list):
+        for text in list:
+            print(f"{Fore.GREEN}{name}:")
+            small_text_bits(text)
+        return list
+    append_username(story_intro)
+
+
+# Game Menu
 
 
 def main_menu():
