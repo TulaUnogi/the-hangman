@@ -53,10 +53,8 @@ def intro():
     sleep(1.3)
     os.system("clear")
 
-    """
-    prints 1 letter at the time, to be fixed
-    """
     def append_username(list):
+        # Displays the username in intro
         for text in list:
             print(f"{Fore.GREEN}{name}:")
             small_text_bits(text)
