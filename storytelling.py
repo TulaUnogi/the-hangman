@@ -1,5 +1,7 @@
 # String variables used for storytelling
 name = ""
+murderer = ""
+
 story_intro = [
     """
     Uh, it's very dark tonight in the forest...
@@ -120,7 +122,6 @@ I can hear something ahead of me...
 AAAAAAAH!!!
 """]
 murderer_intro = ["""
-*Shadow in the dark*
 KHEE, KHEE, KHEE!
 DID SOMEONE SAY THEY WISH TO HAVE A COMPANY? YEESSSS?
 """, """

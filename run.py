@@ -46,10 +46,19 @@ def get_username():
 
 
 def append_username(list):
-    # Displays the username in intro
+    # Displays the username to dialogues in game
     sleep(1.5)
     for text in list:
         print(f"{Fore.GREEN}{name}:")
+        small_text_bits(text)
+    return list
+
+
+def append_murderer(list):
+    # Appends the murderer variable to dialogues in game
+    sleep(1.5)
+    for text in list:
+        print(f"{Fore.RED}{murderer}:")
         small_text_bits(text)
     return list
 
@@ -90,17 +99,19 @@ def choose_direction():
     """)
     clear_terminal()
     if directions.lower() == "4":
+        global murderer
+        murderer = "*Shadow in the dark*"
         append_username(go_ahead)
-        small_text_bits(murderer_intro)
-    elif directions.lower() == "a":
+        append_murderer(murderer_intro)
+    elif directions.lower() == "2":
         append_username(turn_left)
         sleep(1.5)
         choose_direction()
-    elif directions.lower() == "s":
+    elif directions.lower() == "3":
         append_username(turn_back)
         sleep(1.5)
         choose_direction()
-    elif directions.lower() == "d":
+    elif directions.lower() == "4":
         append_username(turn_right)
         sleep(1.5)
         choose_direction()
