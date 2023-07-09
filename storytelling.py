@@ -1,4 +1,5 @@
 # String variables used for storytelling
+name = ""
 story_intro = [
     """
     Uh, it's very dark tonight in the forest...
@@ -34,12 +35,70 @@ story_intro = [
     Let's find my way back.
     I better leave an [X] mark on the ground.
     It would be better to know, that I was already here...
+    ...Just in case...
     """, """
-    Just in case.
-    """, """
-    Now, which direction should I go?"
+    Now, which direction should I go?
     """
 ]
+
+turn_left = ["""
+Ok, I will turn left now.
+There must be some way out of here.
+""", """
+OUCH!!
+The stupid branch poke me in the eye!
+That's quite sore!
+""", """
+Surely this forest is not the most friendly place
+on this planet.
+""", """
+Oh, I think I can see the clearing in the forest!
+I soon will be out of these woods!
+""", """
+Oh... That's an [X] point again...
+I've been here just few minutes ago.
+I must be going in circles.
+Ok, now which direction should I choose next?
+"""]
+
+turn_back = ["""
+What if I just simply turn back?
+That must be the right option.
+""", """
+...
+...
+I can't even see my own hands in front of my face.
+How much darker could it be if I went deeper into the forest?
+I'm scared to even think about it.
+""", """
+Oh, finally, a brighter spot ahead of me!
+That must be it!
+""", """
+Is it... NO WAY...
+An [X] point again...!
+I must've somehow turned around in that darkness...
+I may try to...
+"""]
+
+turn_right = ["""
+Ok, turning right then...
+I hope it's going to be the right choice.
+""", """
+It feels nearly unnatural how quiet it is in this forest.
+I know most of the animals are asleep,
+but I'm pretty sure that there should be at least some bird noises or so...
+""", """
+It's almost as if... The forest was...
+Holding it's... Breath...?
+""", """
+I must stop now, I'm causing myself a goosebumps!
+Oh, great.
+Here's an [X] spot again.
+""", """
+I'm clearly walking in circles.
+Good that at least I left this [X] mark here.
+It would be no fun to be walking in circles without even knowing about it.
+"""]
 
 go_ahead = ["""
 Well, I guess I will just go ahead.
@@ -55,6 +114,10 @@ I can see something between the trees!
 It looks like a bonfire!
 Am I finally getting close to our campsite?
 I can't wait to finally have a company!
+""", """
+Hold on.
+I can hear something ahead of me...
+AAAAAAAH!!!
 """]
 murderer_intro = ["""
 *Shadow in the dark*

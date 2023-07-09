@@ -36,30 +36,78 @@ def small_text_bits(list):
     clear_terminal()
     return text
 
-# Storytelling functions
 
+def get_username():
+    # Gets User input to create the global name variable
+    clear_terminal()
+    global name
+    name = input("Please enter your name: \n")
+    clear_terminal()
+
+
+def append_username(list):
+    # Displays the username in intro
+    sleep(1.5)
+    for text in list:
+        print(f"{Fore.GREEN}{name}:")
+        small_text_bits(text)
+    return list
+
+
+# Storytelling functions
 
 def intro():
     '''
     Prints the story intro with the typing and text delay effects
     '''
     os.system("clear")
-    name = input("Please enter your name: \n")
+    print(name)
     loading_bar = ["******************************************** \n",
                    "Your game starts now!"]
+    get_username()
     print(f"{Fore.YELLOW}Loading The Hangman...")
     sleep(1)
     print(small_text_bits(loading_bar), )
     sleep(1.3)
     os.system("clear")
-
-    def append_username(list):
-        # Displays the username in intro
-        for text in list:
-            print(f"{Fore.GREEN}{name}:")
-            small_text_bits(text)
-        return list
     append_username(story_intro)
+    choose_direction()
+
+
+def choose_direction():
+    """
+    Takes User input and presents different output
+    based on their choice
+    """
+    print("\n" * 3, f"{Fore.YELLOW}{Style.BRIGHT}Choose the direction:")
+    directions = input("""
+
+    1 = TURN LEFT
+    2 = TURN BACK
+    3 = TURN RIGHT
+    4 = GO AHEAD
+     \n \n \n
+    """)
+    clear_terminal()
+    if directions.lower() == "4":
+        append_username(go_ahead)
+        small_text_bits(murderer_intro)
+    elif directions.lower() == "a":
+        append_username(turn_left)
+        sleep(1.5)
+        choose_direction()
+    elif directions.lower() == "s":
+        append_username(turn_back)
+        sleep(1.5)
+        choose_direction()
+    elif directions.lower() == "d":
+        append_username(turn_right)
+        sleep(1.5)
+        choose_direction()
+    else:
+        print(f"{Fore.RED}Please type a valid option.")
+        choose_direction()
+    return directions
 
 
 # Game Menu
