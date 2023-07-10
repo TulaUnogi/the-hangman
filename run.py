@@ -126,6 +126,7 @@ def will_you_play():
     """
     Takes the User input to decide whether to terminate the game
     or to play The Hangman with the murderer.
+    Prints the dialogues depending on the choice.
     """
     clear_terminal()
     play = input(f"""{Fore.YELLOW}{Style.BRIGHT}
@@ -134,9 +135,18 @@ def will_you_play():
     N = NO
     """)
     if play.lower() == "y":
+        global murderer
+        murderer = "Jack Ketch"
         clear_terminal()
+        append_username(will_play)
+        sleep(1)
+        clear_terminal()
+        append_murderer(rules)
         print("placeholder for hangman function")
     elif play.lower() == "n":
+        clear_terminal()
+        append_username(not_playing)
+        sleep(1)
         clear_terminal()
         print(f"{Fore.RED}{game_over}")
         sleep(4)

@@ -123,6 +123,7 @@ Oh no, what's that?!
 """, """
 AAAAH!!!
 """]
+
 murderer_intro = ["""
 KHEE, KHEE, KHEE!
 DID SOMEONE SAY THEY WISH TO HAVE A COMPANY? YEESSSS?
@@ -177,4 +178,58 @@ SOOO? WHAT DO YOU THINK?
 WILL YOU ENTERTAIN ME?
 """, """
 WILL YOU PLAY THE GAME?
+"""]
+
+not_playing = ["""
+I don't want to play.
+""", """
+Just... do it quickly.
+"""]
+
+will_play = ["""
+I want to play the game.
+If there's even a little chance of getting out of here,
+then I will take it.
+""", """
+I have no better choice anyway...
+What are the rules?
+But first tell me who are you and why are you doing this to me?
+"""]
+
+rules = ["""
+YOU CAN CALL ME... JACK KETCH, KHEE, KHEE...
+AND WHY AM I DOING THIS TO YOU?
+BECAUSE THAT KEEPS ME ENTERTAINED.
+AND I LOVE A BIT OF SIMPLE ENTERTAINMENT, YEESSS...
+""", """
+SPEAKING OF RULES...
+HAVE YOU NEVER PLAYED 'THE HANGMAN' AS A CHILD?
+...HOW BIZARRE!
+ANYWAY, THE RULES ARE NOT TOO COMPLICATED...
+""", """
+I WILL THINK ABOUT A SINGLE LITTLE SECRET WORD.
+ALL YOU NEED TO DO, IS... KHEE, KHEE...
+TO GUESS IT! YEESSS!
+""", """
+NO WORRIES, YOU DON'T NEED TO READ MY MIND!
+YOU HAVE SEVEN CHANCES TO GUESS THE WORD.
+ONE. LETTER. AT. THE. TIME.
+""", """
+CAN YOU SEE THAT TREE?
+EVERY TIME YOU FAIL TO GUESS THE LETTER
+YOU WILL GET CLOSER AND CLOSER TO BECOME THE HANGMAN YOURSELF!
+YEESSSSSS!
+""", """
+THAT SOUNDS LIKE FUN, DOESN'T IT?
+KHEE, KHEE, KHEE!
+""", """
+...YOUR FACE DOES NOT LOOK LIKE YOU'RE HAVING FUN, THOUGH...
+HOW DISSAPOINTING...
+""", """
+ALRIGHT.
+TO MAKE IT EASIER FOR YOU I WILL LET YOU CHOOSE THE CATEGORY.
+BETTER? YEESSS?
+""", """
+NOW, SHALL WE PROCEED?
+LET THE FUN BEGIN, KHEE, KHEE, KHEE!
 """]
