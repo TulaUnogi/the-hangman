@@ -103,6 +103,7 @@ def choose_direction():
         murderer = "*Shadow in the dark*"
         append_username(go_ahead)
         append_murderer(murderer_intro)
+        will_you_play()
     elif directions.lower() == "2":
         append_username(turn_left)
         sleep(1.5)
@@ -120,6 +121,32 @@ def choose_direction():
         choose_direction()
     return directions
 
+
+def will_you_play():
+    """
+    Takes the User input to decide whether to terminate the game
+    or to play The Hangman with the murderer.
+    """
+    clear_terminal()
+    play = input(f"""{Fore.YELLOW}{Style.BRIGHT}
+    WILL YOU PLAY THE GAME?{Style.RESET_ALL}
+    Y = YES
+    N = NO
+    """)
+    if play.lower() == "y":
+        clear_terminal()
+        print("placeholder for hangman function")
+    elif play.lower() == "n":
+        clear_terminal()
+        print(f"{Fore.RED}{game_over}")
+        sleep(4)
+        clear_terminal()
+        main_menu()
+    else:
+        print(f"{Fore.RED}Please enter a valid option.")
+        sleep(1)
+        clear_terminal()
+        will_you_play()
 
 # Game Menu
 
@@ -143,6 +170,9 @@ def main_menu():
     elif menu_choice == "2":
         clear_terminal()
         print("The High Scores to be here")
+    elif menu_choice == "4":  # temporarily here to skip dialogues
+        clear_terminal()
+        will_you_play()
     elif menu_choice == "3":
         clear_terminal()
         print(f"{Fore.YELLOW}{Style.BRIGHT}Are you leaving already?")
