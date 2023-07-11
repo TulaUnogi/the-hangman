@@ -116,15 +116,15 @@ def choose_direction():
         append_username(go_ahead)
         append_murderer(murderer_intro)
         will_you_play()
-    elif directions.lower() == "2":
+    elif directions.lower() == "1":
         append_username(turn_left)
         sleep(1.5)
         choose_direction()
-    elif directions.lower() == "3":
+    elif directions.lower() == "2":
         append_username(turn_back)
         sleep(1.5)
         choose_direction()
-    elif directions.lower() == "4":
+    elif directions.lower() == "3":
         append_username(turn_right)
         sleep(1.5)
         choose_direction()
@@ -222,9 +222,6 @@ def main_menu():
     elif menu_choice == "2":
         clear_terminal()
         print("The High Scores to be here")
-    elif menu_choice == "4":  # temporarily here to skip dialogues
-        clear_terminal()
-        will_you_play()
     elif menu_choice == "3":
         clear_terminal()
         print(f"{Fore.YELLOW}{Style.BRIGHT}Are you leaving already?")
@@ -233,17 +230,15 @@ def main_menu():
             clear_terminal()
             sleep(1)
             exiting = "Exiting in progress"
-            exiting_loading = ["""
-************************""", "❤ BYE-BYE ❤ "]
+            exiting_loading = ["************************", "❤ BYE-BYE ❤"]
             print(f"{Style.BRIGHT}{exiting}")
             small_text_bits(exiting_loading)
             exit()
-        elif exit_choice.lower() == "y":
+        elif exit_choice.lower() == "n":
             main_menu()
-        else:
-            print(f"{Fore.RED}Please enter a valid option.")
-            sleep(1.5)
-            main_menu()
+    elif menu_choice == "4":  # temporarily here to skip dialogues
+        clear_terminal()
+        set_secret_word()
     else:
         print(f"{Fore.RED}Please enter a valid option.")
         sleep(1.5)

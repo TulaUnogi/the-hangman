@@ -136,7 +136,7 @@ IT'S EASY TO GET LOST, IT'S EASY TO FALL...
 """, """
 ...INTO...
 """, """
-...A TRAP!#
+...A TRAP!
 """, """
 BOO!
 KHEE, KHEE, KHEE!
