@@ -7,10 +7,22 @@ from colorama import Fore, Style
 import sys
 import os
 from time import sleep
+import random
 
 
 # Initialize colorama
 colorama.init(autoreset=True)
+
+# Game variables
+
+categories = """
+1. DOG BREEDS
+2. POKÉMONS
+3. BIRDS
+"""
+category = ""
+secret_word = ""
+hidden_word = ""
 
 
 # Misc functions
@@ -142,7 +154,7 @@ def will_you_play():
         sleep(1)
         clear_terminal()
         append_murderer(rules)
-        print("placeholder for hangman function")
+        set_secret_word()
     elif play.lower() == "n":
         clear_terminal()
         append_username(not_playing)
@@ -158,8 +170,38 @@ def will_you_play():
         clear_terminal()
         will_you_play()
 
-# Game Menu
 
+# The Hangman Game functions
+
+def set_secret_word():
+    """
+    Takes User input to choose the category.
+    Based on the category choice randomize the secret word and
+    displays it as a string of underscores.
+    """
+    global categories, category
+    clear_terminal()
+    print("\n" * 2)
+    print(f"{Fore.GREEN}{categories}\n")
+    chosen_category = input(f"{Fore.YELLOW}Please choose your category: \n")
+    if chosen_category == "1":
+        category = "DOG BREEDS"
+        words = ["beagle", "doberman", "corgi"]
+    elif chosen_category == "2":
+        category = "POKÉMONS"
+        words = ["pikachu", "charmander", "meowth"]
+    elif chosen_category == "3":
+        category = "BIRDS"
+        words = ["crow", "swan", "blackbird"]
+    else:
+        print(f"{Fore.RED}Please enter a valid option.")
+        sleep(1)
+        set_secret_word()
+    secret_word = random.choice(words)
+    hidden_word = "_" * len(secret_word)
+
+
+# Game Menu
 
 def main_menu():
     """
