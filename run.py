@@ -7,7 +7,7 @@ from colorama import Fore, Style
 import sys
 import os
 from time import sleep
-import random
+import requests
 
 
 # Initialize colorama
@@ -15,14 +15,8 @@ colorama.init(autoreset=True)
 
 # Game variables
 
-categories = """
-1. DOG BREEDS
-2. POKÉMONS
-3. BIRDS
-"""
-category = ""
-secret_word = ""
-hidden_word = ""
+secret_word = None
+hidden_word = None
 
 
 # Misc functions
@@ -175,30 +169,18 @@ def will_you_play():
 
 def set_secret_word():
     """
-    Takes User input to choose the category.
-    Based on the category choice randomize the secret word and
+    Requests a random word from external API and
     displays it as a string of underscores.
     """
-    global categories, category
+    global secret_word
+    api_url = 'https://random-word-api.herokuapp.com/word?length=5'
+
     clear_terminal()
-    print("\n" * 2)
-    print(f"{Fore.GREEN}{categories}\n")
-    chosen_category = input(f"{Fore.YELLOW}Please choose your category: \n")
-    if chosen_category == "1":
-        category = "DOG BREEDS"
-        words = ["beagle", "doberman", "corgi"]
-    elif chosen_category == "2":
-        category = "POKÉMONS"
-        words = ["pikachu", "charmander", "meowth"]
-    elif chosen_category == "3":
-        category = "BIRDS"
-        words = ["crow", "swan", "blackbird"]
-    else:
-        print(f"{Fore.RED}Please enter a valid option.")
-        sleep(1)
-        set_secret_word()
-    secret_word = random.choice(words)
+    response = requests.get(api_url)
+    secret_word_list = response.json()  # Displays a list including random word
+    secret_word = secret_word_list[0]
     hidden_word = "_" * len(secret_word)
+    return secret_word
 
 
 # Game Menu
