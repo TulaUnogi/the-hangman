@@ -32,14 +32,14 @@ SHEET = GSPREAD_CLIENT.open("the_hangman_scores")
 scores = SHEET.worksheet("scores")
 all_scores = scores.get_all_values()
 
-# Game variables
+# Game variables (letters added temporarily for testing)
 
 secret_word = None
 hidden_word = None
 score = None
 user_chances = 7
 guessed_letters = ["d", "a", "b"]
-wrong_guesses = ["c", "e"]
+wrong_guesses = ["c", "e", "o", "u"]
 
 # Misc functions
 
@@ -218,6 +218,35 @@ def set_secret_word():
     secret_word = secret_word_list[0]
     hidden_word = "_" * len(secret_word)
     return secret_word
+
+
+def display_hangman():
+    # Displays the hangman picture based on wrong guesses
+    clear_terminal()
+    if len(wrong_guesses) == 0:
+        print(f"{Fore.GREEN}{hangman[0]}")
+    elif len(wrong_guesses) == 1:
+        print(f"{Fore.GREEN}{hangman[1]}")
+    elif len(wrong_guesses) == 2:
+        print(f"{Fore.GREEN}{hangman[2]}")
+    elif len(wrong_guesses) == 3:
+        print(f"{Fore.GREEN}{hangman[3]}")
+    elif len(wrong_guesses) == 4:
+        print(f"{Fore.GREEN}{hangman[4]}")
+    elif len(wrong_guesses) == 5:
+        print(f"{Fore.GREEN}{hangman[5]}")
+    elif len(wrong_guesses) == 6:
+        print(f"{Fore.GREEN}{hangman[6]}")
+    elif len(wrong_guesses) == 7:
+        print(f"{Fore.GREEN}{hangman[7]}")
+    elif len(wrong_guesses) == 8:
+        print(f"{Fore.GREEN}{hangman[8]}")
+        sleep(3)
+        clear_terminal
+        print(f"{Fore.RED}{game_over}")
+    else:
+        print(f"{Fore.RED}Oops! Something went wrong. Exiting.")
+        exit()
 
 
 # Game Menu
