@@ -3,3 +3,5 @@ requests
 sys
 os
 time
+gspread
+google-auth

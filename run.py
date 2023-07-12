@@ -8,10 +8,28 @@ import sys
 import os
 from time import sleep
 import requests
+import gspread
+from google.oauth2.service_account import Credentials
 
 
 # Initialize colorama
 colorama.init(autoreset=True)
+
+# Credentials and other gspread variables
+
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+    ]
+
+CREDS = Credentials.from_service_account_file("creds.json")
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open("the_hangman_scores")
+
+scores = SHEET.worksheet("scores")
+all_scores = scores.get_all_values()
 
 # Game variables
 
