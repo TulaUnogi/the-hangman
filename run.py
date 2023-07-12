@@ -10,6 +10,7 @@ from time import sleep
 import requests
 import gspread
 from google.oauth2.service_account import Credentials
+import math
 
 
 # Initialize colorama
@@ -35,7 +36,10 @@ all_scores = scores.get_all_values()
 
 secret_word = None
 hidden_word = None
-
+score = None
+user_chances = 7
+guessed_letters = ["d", "a", "b"]
+wrong_guesses = ["c", "e"]
 
 # Misc functions
 
@@ -181,6 +185,21 @@ def will_you_play():
         sleep(1)
         clear_terminal()
         will_you_play()
+
+
+# High Scores
+
+def score_calculation():
+    # Calculates scores and prints User's results
+    global score
+    score = math.ceil((len(guessed_letters) *
+                       1034 - len(wrong_guesses * 25)) / user_chances * 10)
+    print(f"{Fore.YELLOW}{Style.BRIGHT}Here are your results: ", "\n" * 2)
+    print(f"{Fore.GREEN}Guessed letters: {len(guessed_letters)}")
+    print(f"{Fore.GREEN}Wrong guesses: {len(wrong_guesses)}")
+    print(f"{Fore.GREEN}Chances left: {user_chances}", "\n" * 2)
+    print(f"{Fore.GREEN}{Style.BRIGHT}TOTAL SCORE: {score}")
+    return score
 
 
 # The Hangman Game functions
