@@ -23,8 +23,6 @@ As a User I would like:
 
     - To have fun and be challenged.
     - To have the rules of the game explained to me in a clear manner.
-    - The game to offer a wide range of secret words from different categories.
-    - To be able to choose the game category by myself.
     - To be informed, that in this game- just like in real life- I may die only once.
     - To be offered another round of the murderous game after winning if I would feel brave enough to try 
     earning the high scores.
