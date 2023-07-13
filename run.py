@@ -34,12 +34,12 @@ all_scores = scores.get_all_values()
 
 # Game variables (letters added temporarily for testing)
 
-secret_word = None
-hidden_word = None
+secret_word = ""
+hidden_word = ""
 score = None
 user_chances = 7
-guessed_letters = ["d", "a", "b"]
-wrong_guesses = ["c", "e", "o", "u"]
+guessed_letters = ""
+wrong_guesses = ""
 
 # Misc functions
 
@@ -247,6 +247,55 @@ def display_hangman():
     else:
         print(f"{Fore.RED}Oops! Something went wrong. Exiting.")
         exit()
+        
+
+# In progress!!
+
+def main_hangman_game():
+    """
+    While the user didn't run out of chances:
+    - get the users input to guess the letter
+    - check if the letter is in the secret word
+    - display a number of chances left
+    - display a guessed letters
+    - update the wrong guesses list
+    - call the function to display the hangman's tree picture
+    """
+    global guessed_letters, wrong_guesses, user_chances
+    set_secret_word()
+    while user_chances > 0:
+        display_hangman()
+        print(f"You have {user_chances} chances left.")
+        print(f"{Style.BRIGHT}Incorrect letters: {wrong_guesses}")
+        user_guess = input(f"{Fore.GREEN}Enter a letter \n")
+        user_guess = user_guess.upper()
+        if user_guess in secret_word:
+            if user_guess in guessed_letters:
+                print(f"{Fore.RED}You already guessed that letter!")
+                sleep(0.7)
+                main_hangman_game()
+            else:
+                guessed_letters = guessed_letters + " " + user_guess
+                sleep(0.7)
+                main_hangman_game()
+        elif user_guess == secret_word:
+            clear_terminal()
+            print(print(f"{Fore.GREEN}{congrats}"))
+            score_calculation()
+        else:
+            if user_guess in wrong_guesses:
+                print(f"{Fore.RED}You already guessed that letter!")
+                sleep(1)
+                main_hangman_game()
+            else:
+                print(f"{Fore.RED}Nice try, but a wrong guess!")
+                wrong_guesses = wrong_guesses + " " + user_guess
+                user_chances = user_chances - 1
+                sleep(1.5)
+                main_hangman_game()
+
+
+main_hangman_game()
 
 
 # Game Menu
