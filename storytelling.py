@@ -1,8 +1,8 @@
 # String variables used for storytelling
-name = ""
-murderer = ""
+NAME = ""
+MURDERER = ""
 
-story_intro = [
+STORY_INTRO = [
     """
     Uh, it's very dark tonight in the forest...
     """, """
@@ -43,7 +43,7 @@ story_intro = [
     """
 ]
 
-turn_left = ["""
+TURN_LEFT = ["""
 Ok, I will turn left now.
 There must be some way out of here.
 """, """
@@ -63,7 +63,7 @@ I must be going in circles.
 Ok, now which direction should I choose next?
 """]
 
-turn_back = ["""
+TURN_BACK = ["""
 What if I just simply turn back?
 That must be the right option.
 """, """
@@ -82,7 +82,7 @@ I must've somehow turned around in that darkness...
 I may try to...
 """]
 
-turn_right = ["""
+TURN_RIGHT = ["""
 Ok, turning right then...
 I hope it's going to be the right choice.
 """, """
@@ -102,7 +102,7 @@ Good that at least I left this [X] mark here.
 It would be no fun to be walking in circles without even knowing about it.
 """]
 
-go_ahead = ["""
+GO_AHEAD = ["""
 Well, I guess I will just go ahead.
 """, """
 Everything is fine.
@@ -124,7 +124,7 @@ Oh no, what's that?!
 AAAAH!!!
 """]
 
-murderer_intro = ["""
+MURDERER_INTRO = ["""
 KHEE, KHEE, KHEE!
 DID SOMEONE SAY THEY WISH TO HAVE A COMPANY? YEESSSS?
 """, """
@@ -180,13 +180,13 @@ WILL YOU ENTERTAIN ME?
 WILL YOU PLAY THE GAME?
 """]
 
-not_playing = ["""
+NOT_PLAYING = ["""
 I don't want to play.
 """, """
 Just... do it quickly.
 """]
 
-will_play = ["""
+WILL_PLAY = ["""
 I want to play the game.
 If there's even a little chance of getting out of here,
 then I will take it.
@@ -196,7 +196,7 @@ What are the rules?
 But first tell me who are you and why are you doing this to me?
 """]
 
-rules = ["""
+RULES = ["""
 YOU CAN CALL ME... JACK KETCH, KHEE, KHEE...
 AND WHY AM I DOING THIS TO YOU?
 BECAUSE THAT KEEPS ME ENTERTAINED.
