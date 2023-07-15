@@ -38,8 +38,8 @@ secret_word = ""
 hidden_word = ""
 score = None
 user_chances = 7
-guessed_letters = ""
-wrong_guesses = ""
+guessed_letters = []
+wrong_guesses = []
 
 # Misc functions
 
@@ -192,8 +192,8 @@ def will_you_play():
 def score_calculation():
     # Calculates scores and prints User's results
     global score
-    score = math.ceil((len(guessed_letters) *
-                       1034 - len(wrong_guesses * 25)) / user_chances * 10)
+    score = math.ceil(len(guessed_letters) *
+                      1034 - len(wrong_guesses * 25) / (user_chances + 1) * 10)
     print(f"{Fore.YELLOW}{Style.BRIGHT}Here are your results: ", "\n" * 2)
     print(f"{Fore.GREEN}Guessed letters: {len(guessed_letters)}")
     print(f"{Fore.GREEN}Wrong guesses: {len(wrong_guesses)}")
@@ -209,10 +209,8 @@ def set_secret_word():
     Requests a random word from external API and
     displays it as a string of underscores.
     """
-    global secret_word
+    global secret_word, hidden_word
     api_url = 'https://random-word-api.herokuapp.com/word?length=5'
-
-    clear_terminal()
     response = requests.get(api_url)
     secret_word_list = response.json()  # Displays a list including random word
     secret_word = secret_word_list[0]
@@ -223,7 +221,7 @@ def set_secret_word():
 def display_hangman():
     # Displays the hangman picture based on wrong guesses
     clear_terminal()
-    if len(wrong_guesses) == 0:
+    if user_chances == 7:
         print(f"{Fore.GREEN}{hangman[0]}")
     elif len(wrong_guesses) == 1:
         print(f"{Fore.GREEN}{hangman[1]}")
@@ -238,12 +236,7 @@ def display_hangman():
     elif len(wrong_guesses) == 6:
         print(f"{Fore.GREEN}{hangman[6]}")
     elif len(wrong_guesses) == 7:
-        print(f"{Fore.GREEN}{hangman[7]}")
-    elif len(wrong_guesses) == 8:
-        print(f"{Fore.GREEN}{hangman[8]}")
-        sleep(3)
-        clear_terminal
-        print(f"{Fore.RED}{game_over}")
+        print(f"{Fore.GREEN}{hangman[7]}")  
     else:
         print(f"{Fore.RED}Oops! Something went wrong. Exiting.")
         exit()
@@ -262,23 +255,25 @@ def main_hangman_game():
     - call the function to display the hangman's tree picture
     """
     global guessed_letters, wrong_guesses, user_chances
-    set_secret_word()
     while user_chances > 0:
         display_hangman()
+        print(secret_word)
+        print(hidden_word)
         print(f"You have {user_chances} chances left.")
         print(f"{Style.BRIGHT}Incorrect letters: {wrong_guesses}")
+        print(f"{Style.BRIGHT}Guessed letters: {guessed_letters}")
         user_guess = input(f"{Fore.GREEN}Enter a letter \n")
         user_guess = user_guess.upper()
-        if user_guess in secret_word:
+        if user_guess in secret_word.upper():
             if user_guess in guessed_letters:
                 print(f"{Fore.RED}You already guessed that letter!")
                 sleep(0.7)
                 main_hangman_game()
             else:
-                guessed_letters = guessed_letters + " " + user_guess
+                guessed_letters.append(user_guess)
                 sleep(0.7)
                 main_hangman_game()
-        elif user_guess == secret_word:
+        elif user_guess == secret_word.upper():
             clear_terminal()
             print(print(f"{Fore.GREEN}{congrats}"))
             score_calculation()
@@ -289,13 +284,24 @@ def main_hangman_game():
                 main_hangman_game()
             else:
                 print(f"{Fore.RED}Nice try, but a wrong guess!")
-                wrong_guesses = wrong_guesses + " " + user_guess
+                wrong_guesses.append(user_guess)
                 user_chances = user_chances - 1
                 sleep(1.5)
-                main_hangman_game()
+                main_hangman_game()                
+    end_game()
 
 
-main_hangman_game()
+def end_game():
+    clear_terminal()
+    print(f"{Fore.GREEN}{hangman[7]}")
+    sleep(3)
+    clear_terminal()
+    print(f"{Fore.RED}{game_over}")
+    sleep(3)
+    score_calculation()
+    sleep(4)
+    clear_terminal()
+    main_menu()
 
 
 # Game Menu
@@ -344,4 +350,5 @@ def main_menu():
 
 # Calling the storytelling functions
 
-main_menu()
+set_secret_word()
+main_hangman_game()
