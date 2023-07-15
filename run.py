@@ -11,6 +11,7 @@ import requests
 import gspread
 from google.oauth2.service_account import Credentials
 import math
+from PyDictionary import PyDictionary
 
 
 # Initialize colorama
@@ -32,7 +33,7 @@ SHEET = GSPREAD_CLIENT.open("the_hangman_scores")
 scores = SHEET.worksheet("scores")
 all_scores = scores.get_all_values()
 
-# Game variables (letters added temporarily for testing)
+# Game variables
 
 secret_word = ""
 hidden_word = ""
@@ -40,6 +41,7 @@ score = None
 user_chances = 7
 guessed_letters = []
 wrong_guesses = []
+definition = ""
 
 # Misc functions
 
@@ -209,13 +211,16 @@ def set_secret_word():
     Requests a random word from external API and
     displays it as a string of underscores.
     """
-    global secret_word, hidden_word
-    api_url = 'https://random-word-api.herokuapp.com/word?length=5'
+    global secret_word, hidden_word, definition
+    api_url = "https://random-word-api.herokuapp.com/word?length=5"
     response = requests.get(api_url)
     secret_word_list = response.json()  # Displays a list including random word
     secret_word = secret_word_list[0]
     hidden_word = "_" * len(secret_word)
-    return secret_word
+    dictionary = PyDictionary()
+    definition = dictionary.meaning(secret_word)
+    if definition == None:
+        definition = f"{Fore.RED}This is a tricky word! GOOD LUCK, {name}! Khee, khee, khee!"
 
 
 def display_hangman():
@@ -257,22 +262,23 @@ def main_hangman_game():
     global guessed_letters, wrong_guesses, user_chances
     while user_chances > 0:
         display_hangman()
-        print(secret_word)
-        print(hidden_word)
-        print(f"You have {user_chances} chances left.")
-        print(f"{Style.BRIGHT}Incorrect letters: {wrong_guesses}")
-        print(f"{Style.BRIGHT}Guessed letters: {guessed_letters}")
-        user_guess = input(f"{Fore.GREEN}Enter a letter \n")
+        print(f"{Style.BRIGHT}HIDDEN WORD:{Style.RESET_ALL} {hidden_word}")
+        print(f"{Style.BRIGHT}HINT:{Style.RESET_ALL} {definition}")
+        print(f"{Fore.RED}Incorrect letters: {Style.RESET_ALL}{wrong_guesses}")
+        print(f"{Fore.GREEN}Guessed letters: {Style.RESET_ALL}{guessed_letters}")
+        print(f"{Style.BRIGHT}You have {user_chances} chances left.")
+        user_guess = input(f"\n{Fore.YELLOW}Enter a letter: \n")
         user_guess = user_guess.upper()
         if user_guess in secret_word.upper():
             if user_guess in guessed_letters:
                 print(f"{Fore.RED}You already guessed that letter!")
                 sleep(0.7)
-                main_hangman_game()
+                continue 
             else:
                 guessed_letters.append(user_guess)
+                display_guessed_letters(user_guess)
                 sleep(0.7)
-                main_hangman_game()
+                continue 
         elif user_guess == secret_word.upper():
             clear_terminal()
             print(print(f"{Fore.GREEN}{congrats}"))
@@ -281,13 +287,13 @@ def main_hangman_game():
             if user_guess in wrong_guesses:
                 print(f"{Fore.RED}You already guessed that letter!")
                 sleep(1)
-                main_hangman_game()
+                continue 
             else:
                 print(f"{Fore.RED}Nice try, but a wrong guess!")
                 wrong_guesses.append(user_guess)
                 user_chances = user_chances - 1
                 sleep(1.5)
-                main_hangman_game()                
+                continue             
     end_game()
 
 
@@ -302,6 +308,16 @@ def end_game():
     sleep(4)
     clear_terminal()
     main_menu()
+
+def display_guessed_letters(user_guess):
+    """
+    Should display the letter but it throws the error instead- to be sorted.
+    """
+    global hidden_word
+    for i in range(len(secret_word)):  # Replace blanks with guessed letters.
+        if secret_word[i] in guessed_letters:
+            hidden_word = hidden_word[:i] + secret_word[i] + hidden_word[i+1:]
+    return hidden_word
 
 
 # Game Menu

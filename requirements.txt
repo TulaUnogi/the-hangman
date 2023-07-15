@@ -5,3 +5,4 @@ os
 time
 gspread
 google-auth
+PyDictionary
