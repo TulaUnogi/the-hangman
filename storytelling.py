@@ -234,3 +234,15 @@ BETTER? YEESSS?
 NOW, SHALL WE PROCEED?
 LET THE FUN BEGIN, KHEE, KHEE, KHEE!
 """]
+
+GAME_2 = ["""You must be either brave or crazy!""",
+"""But if you really want to die...
+How could I say no? Khee, khee, khee!"""
+]
+
+GAME_3 = ["""You must be definitely crazy to play for 
+            your life so many times!
+            Do you really want to die? Khee, khee!""", """
+            This is the last time I'm going to let you play!
+            If you win, run away or I'm going to chase you away with a stick!
+            """]

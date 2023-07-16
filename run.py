@@ -37,13 +37,17 @@ ALL_SCORES = SCORES.get_all_values()
 
 SECRET_WORD = ""
 HIDDEN_WORD = ""
-SCORE = None
+SCORE = 0
+SCORE1 = 0
+SCORE2 = 0
 USER_CHANCES = 7
 GUESSED_LETTERS = []
 WRONG_GUESSES = []
 DEFINITION = ""
+GAME_ROUND = 2
 
 # Misc functions
+
 
 
 def clear_terminal():
@@ -232,15 +236,16 @@ def score_calculation():
     global SCORE
     SCORE = math.ceil((len(GUESSED_LETTERS) *
                       1034 - len(WRONG_GUESSES * 25)) + (USER_CHANCES) * 5)
+    total_score = SCORE + SCORE1 + SCORE2
     print(f"{Fore.RED}{GAME_LOGO}\n\n")
     print(f"{Fore.YELLOW}{Style.BRIGHT}Here are your results: ", "\n" * 2)
     print(f"{Fore.GREEN}Guessed letters: {len(GUESSED_LETTERS)}")
     print(f"{Fore.GREEN}Wrong guesses: {len(WRONG_GUESSES)}")
     print(f"{Fore.GREEN}Chances left: {USER_CHANCES}", "\n" * 2)
-    print(f"{Fore.GREEN}{Style.BRIGHT}TOTAL SCORE: {SCORE}")
+    print(f"{Fore.GREEN}{Style.BRIGHT}TOTAL SCORE: {total_score}")
 
 
-# The Hangman Game functions
+# The Hangman Game functions    
 
 def set_secret_word():
     """
@@ -296,7 +301,7 @@ def display_core_game():
     print(f"\n{Style.BRIGHT}You have {USER_CHANCES} chances left.")
 
 
-def end_game():
+def lost_game():
     """
     Prints the lost game ending, displays calculated scores and 
     returns to Main Menu.
@@ -313,8 +318,16 @@ def end_game():
     score_calculation()
     sleep(10)
     clear_terminal()
-    main_menu()
+    __main__()
 
+def won_game():
+    clear_terminal()
+    print("\n" * 5)
+    print(f"\n{Fore.GREEN}{CONGRATS}")
+    sleep(2)
+    score_calculation()
+    sleep(10)
+    clear_terminal()
 
 def display_guessed_letters(user_guess):
     """
@@ -328,6 +341,36 @@ def display_guessed_letters(user_guess):
         if char.upper() in user_guess_list:
             hidden_word_list[index] = SECRET_WORD[index]
     HIDDEN_WORD = "".join(hidden_word_list)
+
+
+def offer_play_again():
+    """
+    Takes user input to decide on playing another round
+    Changes the rounds number if playing again
+    """
+    clear_terminal()
+    print(f"{Fore.RED}{GAME_LOGO}")
+    print("\n" * 3)
+    play_again = input("f{Fore.YELLOW}PLAY AGAIN? Y/N{Style.RESET_ALL} \n")
+    if play_again == "Y".lower():
+        GAME_ROUND + 1
+        handle_more_rounds()
+    elif play_again == "N".lower():
+        clear_terminal()
+        print(FOREST)
+        print("You managed to escape the murderer and come back to your friends!")
+        print("\n" * 3)
+        print("You're safe now! Congrats!")
+        print("\n" * 3)
+        small_text_bits("Updating the SCORE BOARD.................\n")
+        print(f"{Fore.GREEN}SCORE BOARD updated!")
+        sleep(6)
+        __main__()
+    else:
+        print(f"{Fore.RED}Please enter valid option.")
+        sleep(2)
+        clear_terminal()
+        offer_play_again()
 
 
 def main_hangman_game():
@@ -358,10 +401,14 @@ def main_hangman_game():
                 display_guessed_letters(user_guess)
                 sleep(0.7)
                 continue 
-        elif user_guess == SECRET_WORD.upper():
+        elif "_" not in HIDDEN_WORD:
+            while GAME_ROUND < 3:
+                clear_terminal()
+                won_game()
+                offer_play_again()
             clear_terminal()
-            print(f"{Fore.GREEN}{CONGRATS}")
-            score_calculation()
+            won_game()
+            __main__()
         else:
             if user_guess in WRONG_GUESSES:
                 print(f"{Fore.RED}You already guessed that letter!")
@@ -373,7 +420,46 @@ def main_hangman_game():
                 USER_CHANCES = USER_CHANCES - 1
                 sleep(1.5)
                 continue             
-    end_game()
+    lost_game()
+
+def handle_more_rounds():
+    """
+    Prints the Murderer's message
+    Resets the game variables
+    Assigns the scores to the new variables
+    """
+    global SCORE, SCORE1, SCORE2
+    while GAME_ROUND <= 3:
+        if GAME_ROUND == 2:
+            clear_terminal()
+            append_murderer(GAME_2.upper())
+            sleep(2)
+            clear_terminal()
+            set_secret_word()
+            SCORE1 = SCORE # Passes 1st score to new variable
+            # Resets the values for a new game
+            SCORE = 0 
+            set_secret_word()
+            USER_CHANCES = 7
+            GUESSED_LETTERS = []
+            WRONG_GUESSES = []
+            DEFINITION = ""
+            main_hangman_game()
+        elif GAME_ROUND == 3:
+            clear_terminal()
+            append_murderer(GAME_3.upper)
+            sleep(2)
+            clear_terminal()
+            set_secret_word()
+            SCORE2 = SCORE
+            SCORE = 0
+            set_secret_word()
+            USER_CHANCES = 7
+            GUESSED_LETTERS = []
+            WRONG_GUESSES = []
+            DEFINITION = ""
+            main_hangman_game()
+    won_game()
 
 
 # Game Menu
@@ -438,5 +524,8 @@ def main_menu():
 
 # Calling the storytelling functions
 
-set_secret_word()
-main_menu()
+def __main__():
+    set_secret_word()
+    main_menu()
+
+__main__()
