@@ -230,8 +230,9 @@ def will_you_play():
 def score_calculation():
     # Calculates scores and prints User's results
     global SCORE
-    SCORE = math.ceil(len(GUESSED_LETTERS) *
-                      1034 - len(WRONG_GUESSES * 25) / (USER_CHANCES + 1) * 10)
+    SCORE = math.ceil((len(GUESSED_LETTERS) *
+                      1034 - len(WRONG_GUESSES * 25)) + (USER_CHANCES) * 5)
+    print(f"{Fore.RED}{GAME_LOGO}\n\n")
     print(f"{Fore.YELLOW}{Style.BRIGHT}Here are your results: ", "\n" * 2)
     print(f"{Fore.GREEN}Guessed letters: {len(GUESSED_LETTERS)}")
     print(f"{Fore.GREEN}Wrong guesses: {len(WRONG_GUESSES)}")
@@ -255,7 +256,7 @@ def set_secret_word():
     dictionary = PyDictionary()
     DEFINITION = dictionary.meaning(SECRET_WORD)
     if DEFINITION == None:
-        DEFINITION = f"{Fore.RED}This is a tricky word! GOOD LUCK, {NAME}! Khee, khee, khee!"
+        DEFINITION = f"{Fore.RED}This is a tricky word! GOOD LUCK! Khee, khee, khee!"
 
 
 def display_hangman():
@@ -306,11 +307,11 @@ def end_game():
     print(f"\n{Fore.RED}Now... Goodnight, sweet angel!")
     sleep(3)
     clear_terminal()
-    print(f"{Fore.RED}{GAME_LOGO}")
+    print("\n" * 5)
     print(f"\n{Fore.RED}{GAME_OVER}")
-    sleep(1)
+    sleep(2)
     score_calculation()
-    sleep(6)
+    sleep(10)
     clear_terminal()
     main_menu()
 
