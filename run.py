@@ -30,8 +30,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("the_hangman_scores")
 
-SCORES = SHEET.worksheet("scores")
-ALL_SCORES = SCORES.get_all_values()
+SCORES_SHEET = SHEET.worksheet("scores")
+ALL_SCORES = SCORES_SHEET.get_all_values()
 
 # Game variables
 
@@ -44,7 +44,7 @@ USER_CHANCES = 7
 GUESSED_LETTERS = []
 WRONG_GUESSES = []
 DEFINITION = ""
-GAME_ROUND = 0
+GAME_ROUND = 1
 
 # Misc functions
 
@@ -256,6 +256,26 @@ def score_calculation():
     print(f"{Fore.GREEN}{Style.BRIGHT}TOTAL SCORE: {total_score}")
 
 
+def update_score_sheet():
+    # Updates the score sheet
+    global SCORES_SHEET
+    clear_terminal()
+    print(f"{Fore.RED}{GAME_LOGO}")
+    print("\n" *3)
+    small_text_bits(["Updating the SCORE BOARD", "................."])    
+    scores_data = [NAME, SCORE]
+    SCORES_SHEET.append_row(scores_data)
+    print(f"{Fore.GREEN}SCORE BOARD updated!")
+
+
+
+def score_table():
+    """
+    Draws the high scores table and prints the
+    5 highest scores
+    """
+    print(f"{Fore.YELLOW}{HIGH_SCORE_FONT}")
+
 # The Hangman Game functions    
 
 def set_secret_word():
@@ -331,12 +351,13 @@ def lost_game():
     print(f"\n{Fore.RED}{GAME_OVER}")
     sleep(2)
     score_calculation()
+    update_score_sheet()
     sleep(10)
     clear_terminal()
     new_game()
     SCORE1 = 0
     SCORE2 = 0
-    GAME_ROUND = 0
+    GAME_ROUND = 1
     __main__()
 
 def won_game():
@@ -378,14 +399,18 @@ def offer_play_again():
         handle_more_rounds()
     elif play_again == "N".lower():
         clear_terminal()
-        print(FOREST, "\n")
-        print("You managed to escape the murderer and come back to your friends!")
+        print(f"{Fore.GREEN}FOREST", "\n")
+        print(f"""{Fore.YELLOW}You have managed to escape the murderer
+        and come back to your friends!""")
         print("\n" * 3)
-        print("You're safe now! Congrats!")
+        print(f"{Fore.GREEN}You're safe now! Congrats!")
         print("\n" * 3)
-        small_text_bits(["Updating the SCORE BOARD", ".................\n"])
-        print(f"{Fore.GREEN}SCORE BOARD updated!")
+        update_score_sheet()
         sleep(6)
+        new_game()
+        SCORE1 = 0
+        SCORE2 = 0
+        GAME_ROUND = 1
         __main__()
     else:
         print(f"{Fore.RED}Please enter valid option.")
@@ -461,7 +486,7 @@ def handle_more_rounds():
             SCORE1 = SCORE # Passes 1st score to new variable
             # Resets the values for a new game
             new_game()
-            main_hangman_game
+            main_hangman_game()
         elif GAME_ROUND == 3:
             clear_terminal()
             append_murderer(GAME_3)
@@ -472,8 +497,7 @@ def handle_more_rounds():
             new_game()
             main_hangman_game()
     won_game()
-    small_text_bits(["Updating the SCORE BOARD", ".................\n"])
-    print(f"{Fore.GREEN}SCORE BOARD updated!")
+    update_score_sheet()
     __main__()
 
 
@@ -518,7 +542,7 @@ def main_menu():
         choose_mode()
     elif menu_choice == "2":
         clear_terminal()
-        print("The High Scores to be here")
+        score_table()
     elif menu_choice == "3":
         clear_terminal()
         display_logo()
