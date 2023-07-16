@@ -12,6 +12,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import math
 from PyDictionary import PyDictionary
+from tabulate import tabulate
 
 
 # Initialize colorama
@@ -45,6 +46,7 @@ GUESSED_LETTERS = []
 WRONG_GUESSES = []
 DEFINITION = ""
 GAME_ROUND = 1
+SCORES_DATA = [NAME, SCORE]
 
 # Misc functions
 
@@ -275,8 +277,7 @@ def update_score_sheet():
     print(f"{Fore.RED}{GAME_LOGO}")
     print("\n" *3)
     small_text_bits(["Updating the SCORE BOARD", "................."])    
-    scores_data = [NAME, SCORE]
-    SCORES_SHEET.append_row(scores_data)
+    SCORES_SHEET.append_row(SCORES_DATA)
     print(f"{Fore.GREEN}SCORE BOARD updated!")
 
 
@@ -286,7 +287,33 @@ def score_table():
     Draws the high scores table and prints the
     5 highest scores
     """
+    clear_terminal()
     print(f"{Fore.YELLOW}{HIGH_SCORE_FONT}")
+    """
+    Sorts the scores. From:
+    stackoverflow.com/questions/30076145/how-to-sort-list-of-lists-by-highest-number
+    """
+    sorted_scores = sorted(ALL_SCORES, key=lambda x: int(x[1]), reverse=True)
+    head_rank = "RANK"
+    head_name = "NAME"
+    head_scores = "SCORES"
+    rank = [1, 2, 3, 4, 5]
+    table_data = sorted_scores[:5]
+    headings = [head_name, head_scores]
+    print("\n" * 3)
+    # From: statology.org/create-table-in-python/
+    print(tabulate(table_data, headers=headings, tablefmt="fancy_grid"))
+    print()
+    back_to_main = input(f"{Fore.GREEN}To return to Main Menu press B: \n")
+    if back_to_main.lower() == "b":
+        clear_terminal()
+        __main__()
+    else:
+        print(f"{Fore.RED}Wrong input.Please press B.")
+        sleep(1.5)
+        clear_terminal
+        score_table()
+   
 
 # The Hangman Game functions    
 

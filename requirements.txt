@@ -6,3 +6,4 @@ time
 gspread
 google-auth
 PyDictionary
+tabulate
