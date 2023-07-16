@@ -100,10 +100,11 @@ def intro():
     Prints the story intro with the typing and text delay effects
     '''
     os.system("clear")
-    print(NAME)
     loading_bar = ["******************************************** \n",
                    "Your game starts now!"]
     get_username()
+    print(f"{Fore.RED}{GAME_LOGO}")
+    print("\n"*3)
     print(f"{Fore.YELLOW}Loading The Hangman...")
     sleep(1)
     print(small_text_bits(loading_bar), )
@@ -118,6 +119,7 @@ def choose_direction():
     Takes User input and presents different output
     based on their choice
     """
+    print(f"{Fore.RED}{GAME_LOGO}")
     print("\n" * 3, f"{Fore.YELLOW}{Style.BRIGHT}Choose the direction:")
     directions = input("""
 
@@ -159,6 +161,8 @@ def will_you_play():
     Prints the dialogues depending on the choice.
     """
     clear_terminal()
+    print(f"{Fore.RED}{GAME_LOGO}")
+    print("\n" * 3)
     play = input(f"""{Fore.YELLOW}{Style.BRIGHT}
     WILL YOU PLAY THE GAME?{Style.RESET_ALL}
     Y = YES
@@ -245,26 +249,67 @@ def display_hangman():
         exit()
         
 
-# In progress!!
+def display_core_game():
+    """
+    Displays hidden word, hint, guessed and wrong letters 
+    and chances left.
+    """
+    print(f"{Style.BRIGHT}HIDDEN WORD:{Style.RESET_ALL} {HIDDEN_WORD}")
+    print(f"\n{Style.BRIGHT}HINT:{Style.RESET_ALL} {DEFINITION}")
+    print(f"{Fore.RED}Incorrect letters: {Style.RESET_ALL}{WRONG_GUESSES}")
+    print(f"{Fore.GREEN}Guessed letters: {Style.RESET_ALL}{GUESSED_LETTERS}")
+    print(f"{Style.BRIGHT}You have {USER_CHANCES} chances left.")
+
+
+def end_game():
+    """
+    Prints the lost game ending, displays calculated scores and 
+    returns to Main Menu.
+    """
+    clear_terminal()
+    print(f"{Fore.GREEN}{HANGMAN[7]}")
+    print(f"The hidden word was: {Fore.YELLOW}{SECRET_WORD}.\n")
+    print(f"\n{Fore.RED}Now... Goodnight, sweet angel!")
+    sleep(3)
+    clear_terminal()
+    print(f"{Fore.RED}{GAME_LOGO}")
+    print(f"\n{Fore.RED}{GAME_OVER}")
+    sleep(1)
+    score_calculation()
+    sleep(6)
+    clear_terminal()
+    main_menu()
+
+
+def display_guessed_letters(user_guess):
+    """
+    Updates the hidden word with guessed letters.
+    Function created with help of my Mentor- thank you!
+    """
+    global HIDDEN_WORD, SECRET_WORD
+    hidden_word_list = list(HIDDEN_WORD)
+    user_guess_list = list(map(lambda x: x.upper(), user_guess))
+    for index, char in enumerate(SECRET_WORD):
+        if char.upper() in user_guess_list:
+            hidden_word_list[index] = SECRET_WORD[index]
+    HIDDEN_WORD = "".join(hidden_word_list)
+
 
 def main_hangman_game():
     """
     While the user didn't run out of chances:
     - get the users input to guess the letter
     - check if the letter is in the secret word
+    - display a word hint
     - display a number of chances left
     - display a guessed letters
     - update the wrong guesses list
-    - call the function to display the hangman's tree picture
+    - display the hangman's tree picture
     """
     global GUESSED_LETTERS, WRONG_GUESSES, USER_CHANCES
     while USER_CHANCES > 0:
         display_hangman()
-        print(f"{Style.BRIGHT}HIDDEN WORD:{Style.RESET_ALL} {HIDDEN_WORD}")
-        print(f"\n{Style.BRIGHT}HINT:{Style.RESET_ALL} {DEFINITION}")
-        print(f"{Fore.RED}Incorrect letters: {Style.RESET_ALL}{WRONG_GUESSES}")
-        print(f"{Fore.GREEN}Guessed letters: {Style.RESET_ALL}{GUESSED_LETTERS}")
-        print(f"{Style.BRIGHT}You have {USER_CHANCES} chances left.")
+        display_core_game()
         user_guess = input(f"\n{Fore.YELLOW}Enter a letter: \n")
         user_guess = user_guess.upper()
         if user_guess in SECRET_WORD.upper():
@@ -295,51 +340,43 @@ def main_hangman_game():
     end_game()
 
 
-def end_game():
-    clear_terminal()
-    print(f"{Fore.GREEN}{HANGMAN[7]}")
-    print(f"The hidden word was: {Fore.YELLOW}{SECRET_WORD}.\n")
-    print(f"\n{Fore.RED}Now... Goodnight, sweet angel!")
-    sleep(3)
-    clear_terminal()
-    print(f"{Fore.RED}{GAME_OVER}")
-    sleep(3)
-    score_calculation()
-    sleep(4)
-    clear_terminal()
-    main_menu()
-
-
-def display_guessed_letters(user_guess):
-    """
-    Should display the letter but it throws the error instead- to be sorted.
-    """
-    global HIDDEN_WORD, SECRET_WORD
-
-    hidden_word_list = list(HIDDEN_WORD)
-    user_guess_list = list(map(lambda x: x.upper(), user_guess))
-    for index, char in enumerate(SECRET_WORD):
-        if char.upper() in user_guess_list:
-            hidden_word_list[index] = SECRET_WORD[index]
-    HIDDEN_WORD = "".join(hidden_word_list)
-
-
 # Game Menu
 
-def main_menu():
-    """
-    Displays the Main Menu to the user
-    Takes user's input to call the menu functions
-    """
+def display_logo():
+    # Displays logo 
     print(f"{Fore.YELLOW}{WELCOME}")
     print(f"{Fore.RED}{GAME_LOGO}")
 
-    left_option = "1. LET'S PLAY"
-    middle_option = "2. HIGH SCORES"
-    right_option = "3. EXIT"
-    print(f"{left_option : <30}{middle_option : ^30}{right_option : >30}")
-    menu_choice = input("Select an option: \n")
 
+def display_menu_options():
+    # Displays the Main Menu options to the user
+    left_option = f"{Style.BRIGHT}{Fore.GREEN}1. LET'S PLAY"
+    middle_option = f"{Style.BRIGHT}{Fore.GREEN}2. HIGH SCORES"
+    right_option = f"{Style.BRIGHT}{Fore.GREEN}3. EXIT"
+    print(f"\n{left_option : <25}{middle_option : ^25}{right_option : >25}\n")
+
+
+def exiting_sequence():
+    # Prints the exiting sequence.
+ 
+    clear_terminal()
+    sleep(1)
+    exiting = f"{Fore.YELLOW}{Style.BRIGHT}Exiting in progress:\n"
+    exiting_loading = ["************************\n", "\n❤  BYE-BYE ❤ "]
+    print(f"{Fore.RED}{GAME_LOGO}")
+    print(exiting)
+    small_text_bits(exiting_loading)
+    exit()
+
+
+def main_menu():
+    """
+    Displays main game menu.
+    Takes user's input to call the menu functions.
+    """
+    display_logo()
+    display_menu_options()
+    menu_choice = input(f"{Style.BRIGHT}Select an option: \n")
     if menu_choice == "1":
         intro()
     elif menu_choice == "2":
@@ -347,19 +384,14 @@ def main_menu():
         print("The High Scores to be here")
     elif menu_choice == "3":
         clear_terminal()
-        print(f"{Fore.YELLOW}{Style.BRIGHT}Are you leaving already?")
-        exit_choice = input("Y = YES       N = NO  \n")
+        display_logo()
+        print(f"{Fore.YELLOW}{Style.BRIGHT}\nAre you leaving already?")
+        exit_choice = input("\n\nY = YES       N = NO\n\n")
         if exit_choice.lower() == "y":
-            clear_terminal()
-            sleep(1)
-            exiting = "Exiting in progress"
-            exiting_loading = ["************************", "❤ BYE-BYE ❤"]
-            print(f"{Style.BRIGHT}{exiting}")
-            small_text_bits(exiting_loading)
-            exit()
+            exiting_sequence()
         elif exit_choice.lower() == "n":
             main_menu()
-    elif menu_choice == "4":  # temporarily here to skip dialogues
+    elif menu_choice == "4":
         clear_terminal()
         set_secret_word()
     else:
@@ -371,4 +403,4 @@ def main_menu():
 # Calling the storytelling functions
 
 set_secret_word()
-main_hangman_game()
+main_menu()
