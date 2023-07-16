@@ -61,6 +61,18 @@ def new_game():
     DEFINITION = ""
     
 
+def reset_all_values():
+    # Resets all the values 
+    global NAME, MURDERER, SCORE1, SCORE2, GAME_ROUND
+    new_game()
+    SCORE1 = 0
+    SCORE2 = 0
+    GAME_ROUND = 1
+    NAME = ""
+    MURDERER = "*Shadow in the dark*"
+    
+
+
 def clear_terminal():
     """
     Clears the terminal
@@ -354,10 +366,7 @@ def lost_game():
     update_score_sheet()
     sleep(10)
     clear_terminal()
-    new_game()
-    SCORE1 = 0
-    SCORE2 = 0
-    GAME_ROUND = 1
+    reset_all_values()
     __main__()
 
 def won_game():
@@ -407,10 +416,7 @@ def offer_play_again():
         print("\n" * 3)
         update_score_sheet()
         sleep(6)
-        new_game()
-        SCORE1 = 0
-        SCORE2 = 0
-        GAME_ROUND = 1
+        reset_all_values()
         __main__()
     else:
         print(f"{Fore.RED}Please enter valid option.")
