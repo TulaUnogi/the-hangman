@@ -79,6 +79,7 @@ def append_username(list):
     # Displays the username to dialogues in game
     sleep(1.5)
     for text in list:
+        print(f"{Fore.GREEN}{FOREST}")
         print(f"{Fore.GREEN}{NAME}:")
         small_text_bits(text)
     return list
@@ -88,6 +89,7 @@ def append_murderer(list):
     # Appends the murderer variable to dialogues in game
     sleep(1.5)
     for text in list:
+        print(f"{Fore.RED}{MURDERER_FACE}")
         print(f"{Fore.RED}{MURDERER}:")
         small_text_bits(text)
     return list
@@ -176,6 +178,7 @@ def will_you_play():
         sleep(1)
         clear_terminal()
         append_murderer(RULES)
+        main_hangman_game()
     elif play.lower() == "n":
         clear_terminal()
         append_username(NOT_PLAYING)
