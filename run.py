@@ -48,7 +48,18 @@ GAME_ROUND = 2
 
 # Misc functions
 
-
+def new_game():
+    """
+    Resets variables to get ready for new round
+    """
+    global SCORE, USER_CHANCES, GUESSED_LETTERS, WRONG_GUESSES, DEFINITION
+    SCORE = 0 
+    set_secret_word()
+    USER_CHANCES = 7
+    GUESSED_LETTERS = []
+    WRONG_GUESSES = []
+    DEFINITION = ""
+    
 
 def clear_terminal():
     """
@@ -305,7 +316,9 @@ def lost_game():
     """
     Prints the lost game ending, displays calculated scores and 
     returns to Main Menu.
+    Resets all values.
     """
+    global SCORE1, SCORE2, GAME_ROUND
     clear_terminal()
     print(f"{Fore.GREEN}{HANGMAN[7]}")
     print(f"The hidden word was: {Fore.YELLOW}{SECRET_WORD}.\n")
@@ -318,6 +331,10 @@ def lost_game():
     score_calculation()
     sleep(10)
     clear_terminal()
+    new_game()
+    SCORE1 = 0
+    SCORE2 = 0
+    GAME_ROUND = 0
     __main__()
 
 def won_game():
@@ -438,13 +455,8 @@ def handle_more_rounds():
             set_secret_word()
             SCORE1 = SCORE # Passes 1st score to new variable
             # Resets the values for a new game
-            SCORE = 0 
-            set_secret_word()
-            USER_CHANCES = 7
-            GUESSED_LETTERS = []
-            WRONG_GUESSES = []
-            DEFINITION = ""
-            main_hangman_game()
+            new_game()
+            main_hangman_game
         elif GAME_ROUND == 3:
             clear_terminal()
             append_murderer(GAME_3.upper)
@@ -452,14 +464,10 @@ def handle_more_rounds():
             clear_terminal()
             set_secret_word()
             SCORE2 = SCORE
-            SCORE = 0
-            set_secret_word()
-            USER_CHANCES = 7
-            GUESSED_LETTERS = []
-            WRONG_GUESSES = []
-            DEFINITION = ""
+            new_game()
             main_hangman_game()
     won_game()
+    __main__()
 
 
 # Game Menu
