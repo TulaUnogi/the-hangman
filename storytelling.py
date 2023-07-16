@@ -1,6 +1,6 @@
 # String variables used for storytelling
 NAME = ""
-MURDERER = ""
+MURDERER = "*Shadow in the dark*"
 
 STORY_INTRO = [
     """

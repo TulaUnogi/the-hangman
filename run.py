@@ -44,7 +44,7 @@ USER_CHANCES = 7
 GUESSED_LETTERS = []
 WRONG_GUESSES = []
 DEFINITION = ""
-GAME_ROUND = 2
+GAME_ROUND = 0
 
 # Misc functions
 
@@ -304,12 +304,14 @@ def display_core_game():
     Displays hidden word, hint, guessed and wrong letters 
     and chances left.
     """
-    print("\n" * 3)
+    print("\n" * 2)
     print(f"{Style.BRIGHT}HIDDEN WORD:{Style.RESET_ALL} {HIDDEN_WORD}")
     print(f"\n{Style.BRIGHT}HINT:{Style.RESET_ALL} {DEFINITION}")
     print(f"\n{Fore.RED}Incorrect letters: {Style.RESET_ALL}{WRONG_GUESSES}")
     print(f"{Fore.GREEN}Guessed letters: {Style.RESET_ALL}{GUESSED_LETTERS}")
     print(f"\n{Style.BRIGHT}You have {USER_CHANCES} chances left.")
+    print(f"\n{Style.DIM}If you guessed all the letters")
+    print(f"{Style.DIM}please press any new letter to continue!")
 
 
 def lost_game():
@@ -365,21 +367,23 @@ def offer_play_again():
     Takes user input to decide on playing another round
     Changes the rounds number if playing again
     """
+    global GAME_ROUND
     clear_terminal()
     print(f"{Fore.RED}{GAME_LOGO}")
     print("\n" * 3)
-    play_again = input("f{Fore.YELLOW}PLAY AGAIN? Y/N{Style.RESET_ALL} \n")
+    play_again = input(f"""{Fore.YELLOW}{Style.BRIGHT}PLAY AGAIN? Y / N
+    {Style.RESET_ALL} \n""")
     if play_again == "Y".lower():
-        GAME_ROUND + 1
+        GAME_ROUND = GAME_ROUND + 1
         handle_more_rounds()
     elif play_again == "N".lower():
         clear_terminal()
-        print(FOREST)
+        print(FOREST, "\n")
         print("You managed to escape the murderer and come back to your friends!")
         print("\n" * 3)
         print("You're safe now! Congrats!")
         print("\n" * 3)
-        small_text_bits("Updating the SCORE BOARD.................\n")
+        small_text_bits(["Updating the SCORE BOARD", ".................\n"])
         print(f"{Fore.GREEN}SCORE BOARD updated!")
         sleep(6)
         __main__()
@@ -404,6 +408,7 @@ def main_hangman_game():
     global GUESSED_LETTERS, WRONG_GUESSES, USER_CHANCES
     while USER_CHANCES > 0:
         display_hangman()
+        print(SECRET_WORD)
         display_core_game()
         print("\n" * 2)
         user_guess = input(f"{Fore.YELLOW}Enter a letter:{Style.RESET_ALL} \n")
@@ -449,7 +454,7 @@ def handle_more_rounds():
     while GAME_ROUND <= 3:
         if GAME_ROUND == 2:
             clear_terminal()
-            append_murderer(GAME_2.upper())
+            append_murderer(GAME_2)
             sleep(2)
             clear_terminal()
             set_secret_word()
@@ -459,7 +464,7 @@ def handle_more_rounds():
             main_hangman_game
         elif GAME_ROUND == 3:
             clear_terminal()
-            append_murderer(GAME_3.upper)
+            append_murderer(GAME_3)
             sleep(2)
             clear_terminal()
             set_secret_word()
@@ -467,6 +472,8 @@ def handle_more_rounds():
             new_game()
             main_hangman_game()
     won_game()
+    small_text_bits(["Updating the SCORE BOARD", ".................\n"])
+    print(f"{Fore.GREEN}SCORE BOARD updated!")
     __main__()
 
 
