@@ -69,9 +69,11 @@ def small_text_bits(list):
 
 def get_username():
     # Gets User input to create the global name variable
-    clear_terminal()
     global NAME
-    NAME = input("Please enter your name: \n")
+    clear_terminal()
+    print(f"{Fore.RED}{GAME_LOGO}")
+    print("\n" * 3)
+    NAME = input(f"{Fore.GREEN}Please enter your name:{Style.RESET_ALL} \n \n")
     clear_terminal()
 
 
@@ -80,6 +82,7 @@ def append_username(list):
     sleep(1.5)
     for text in list:
         print(f"{Fore.GREEN}{FOREST}")
+        print("\n" * 4)
         print(f"{Fore.GREEN}{NAME}:")
         small_text_bits(text)
     return list
@@ -90,9 +93,36 @@ def append_murderer(list):
     sleep(1.5)
     for text in list:
         print(f"{Fore.RED}{MURDERER_FACE}")
+        print("\n" * 4)
         print(f"{Fore.RED}{MURDERER}:")
         small_text_bits(text)
     return list
+
+def choose_mode():
+    """
+    Takes User input to allow a choice between a story mode and 
+    a plain Hangman game.
+    """
+    clear_terminal()
+    print(f"{Fore.RED}{GAME_LOGO}")
+    print("\n" * 3, f"{Fore.GREEN}{Style.BRIGHT}CHOOSE ONE OF THE OPTIONS:\n")
+    print(f"""\n{Fore.RED}1. Story mode:{Style.RESET_ALL} 
+    (If you play the game for the first time OR just enjoy the story time)""")
+    print(f"""{Fore.RED}2. Plain Hangman:{Style.RESET_ALL}
+    (If you wish to skip directly to the game part)""")
+    print("\n" * 2)
+    mode_choice = input(f"""{Fore.YELLOW}Please type only 1 OR 2:\n
+    {Style.RESET_ALL} """)
+    if mode_choice == "1":
+        intro()
+    elif mode_choice == "2":
+        get_username()
+        main_hangman_game()
+    else:
+        print(f"{Fore.RED}CHOOSE EITHER 1 OR 2!")
+        sleep(1.5)
+        clear_terminal()
+        choose_mode()
 
 
 # Storytelling functions
@@ -101,17 +131,17 @@ def intro():
     '''
     Prints the story intro with the typing and text delay effects
     '''
-    os.system("clear")
+    clear_terminal()
     loading_bar = ["******************************************** \n",
-                   "Your game starts now!"]
+                   "\nYour game starts now!"]
     get_username()
     print(f"{Fore.RED}{GAME_LOGO}")
     print("\n"*3)
-    print(f"{Fore.YELLOW}Loading The Hangman...")
+    print(f"{Fore.YELLOW}Loading The Hangman...\n \n")
     sleep(1)
     print(small_text_bits(loading_bar), )
     sleep(1.3)
-    os.system("clear")
+    clear_terminal()
     append_username(STORY_INTRO)
     choose_direction()
 
@@ -257,11 +287,12 @@ def display_core_game():
     Displays hidden word, hint, guessed and wrong letters 
     and chances left.
     """
+    print("\n" * 3)
     print(f"{Style.BRIGHT}HIDDEN WORD:{Style.RESET_ALL} {HIDDEN_WORD}")
     print(f"\n{Style.BRIGHT}HINT:{Style.RESET_ALL} {DEFINITION}")
-    print(f"{Fore.RED}Incorrect letters: {Style.RESET_ALL}{WRONG_GUESSES}")
+    print(f"\n{Fore.RED}Incorrect letters: {Style.RESET_ALL}{WRONG_GUESSES}")
     print(f"{Fore.GREEN}Guessed letters: {Style.RESET_ALL}{GUESSED_LETTERS}")
-    print(f"{Style.BRIGHT}You have {USER_CHANCES} chances left.")
+    print(f"\n{Style.BRIGHT}You have {USER_CHANCES} chances left.")
 
 
 def end_game():
@@ -313,7 +344,8 @@ def main_hangman_game():
     while USER_CHANCES > 0:
         display_hangman()
         display_core_game()
-        user_guess = input(f"\n{Fore.YELLOW}Enter a letter: \n")
+        print("\n" * 2)
+        user_guess = input(f"{Fore.YELLOW}Enter a letter:{Style.RESET_ALL} \n")
         user_guess = user_guess.upper()
         if user_guess in SECRET_WORD.upper():
             if user_guess in GUESSED_LETTERS:
@@ -381,7 +413,7 @@ def main_menu():
     display_menu_options()
     menu_choice = input(f"{Style.BRIGHT}Select an option: \n")
     if menu_choice == "1":
-        intro()
+        choose_mode()
     elif menu_choice == "2":
         clear_terminal()
         print("The High Scores to be here")
