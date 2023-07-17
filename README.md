@@ -171,11 +171,13 @@ for good.
     the functions while playing.
     - There's few areas for improvement and future developement that could be addressed.
     - At this moment there's no game breaking bug known.
+    - There's an index out of range error displaying, that needs to be resolved with the next update
     - After guessing all the letters in a hidden word the game doesn't automatically move to the congratulations screen.
     The user needs to press additional new letter to trigger that function and to tackle this situation the message for
     the user has been printed on the screen.
     - Currently, if the user guesses the whole word incorrectly the game doesn't recognise it as an invalid guess. This is
     the area for the future development.
+    - The size of the mockup terminal is a bit small for the game to display fully, in a future update this should be solved.
     - Adding a categories would be a good addition. While that was initially the plan, I reverted from it to try the approach
     with the external API. For this moment I'm still searching for the API that would handle multiple categories.
 
