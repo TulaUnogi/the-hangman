@@ -78,6 +78,8 @@ Google Sheet was used for storing the calculated score data and it can be find [
     Because this library does not include all of the secret's word's definition, I needed to handle this issue by passing the 
     hint variable the string written by me.
 
+## Game Features and Gameplay
+
 
 
 

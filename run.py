@@ -468,7 +468,7 @@ def main_hangman_game():
     while USER_CHANCES > 0:
         display_hangman()
         display_core_game()
-        print("\n" * 2)
+        print()
         user_guess = input(f"{Fore.YELLOW}Enter a letter:{Style.RESET_ALL} \n")
         user_guess = user_guess.upper()
         if user_guess in SECRET_WORD.upper():
