@@ -60,7 +60,6 @@ def new_game():
     USER_CHANCES = 7
     GUESSED_LETTERS = []
     WRONG_GUESSES = []
-    DEFINITION = ""
     
 
 def reset_all_values():
