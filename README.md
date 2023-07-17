@@ -163,7 +163,23 @@ When the User wins the game he also has presented the results, but before that t
 and the game asks them if they want to play again. They can play up to 3 rounds before they are released by the Murderer 
 for good.
 
+## Debugging and known areas for improvement
 
+![Former bug example](documentation/debugging_game_won_stuck.png)
+
+    - Debugging has been implemented through running the game multiple times and checking functionality of all
+    the functions while playing.
+    - There's few areas for improvement and future developement that could be addressed.
+    - At this moment there's no game breaking bug known.
+    - After guessing all the letters in a hidden word the game doesn't automatically move to the congratulations screen.
+    The user needs to press additional new letter to trigger that function and to tackle this situation the message for
+    the user has been printed on the screen.
+    - Currently, if the user guesses the whole word incorrectly the game doesn't recognise it as an invalid guess. This is
+    the area for the future development.
+    - Adding a categories would be a good addition. While that was initially the plan, I reverted from it to try the approach
+    with the external API. For this moment I'm still searching for the API that would handle multiple categories.
+
+    
 
 
 
