@@ -55,7 +55,7 @@ def new_game():
     Resets variables to get ready for new round
     """
     global SCORE, USER_CHANCES, GUESSED_LETTERS, WRONG_GUESSES, DEFINITION
-    SCORE = 0 
+    SCORE = 0
     set_secret_word()
     USER_CHANCES = 7
     GUESSED_LETTERS = []
@@ -63,7 +63,7 @@ def new_game():
     
 
 def reset_all_values():
-    # Resets all the values 
+    # Resets all the values
     global NAME, MURDERER, SCORE1, SCORE2, GAME_ROUND
     new_game()
     SCORE1 = 0
@@ -129,13 +129,13 @@ def append_murderer(list):
 
 def choose_mode():
     """
-    Takes User input to allow a choice between a story mode and 
+    Takes User input to allow a choice between a story mode and
     a plain Hangman game.
     """
     clear_terminal()
     print(f"{Fore.RED}{GAME_LOGO}")
     print("\n" * 3, f"{Fore.GREEN}{Style.BRIGHT}CHOOSE ONE OF THE OPTIONS:\n")
-    print(f"""\n{Fore.RED}1. Story mode:{Style.RESET_ALL} 
+    print(f"""\n{Fore.RED}1. Story mode:{Style.RESET_ALL}
     (If you play the game for the first time OR just enjoy the story time)""")
     print(f"""{Fore.RED}2. Plain Hangman:{Style.RESET_ALL}
     (If you wish to skip directly to the game part)""")
@@ -315,7 +315,7 @@ def score_table():
         score_table()
    
 
-# The Hangman Game functions    
+# The Hangman Game functions
 
 def set_secret_word():
     """
