@@ -80,6 +80,91 @@ Google Sheet was used for storing the calculated score data and it can be find [
 
 ## Game Features and Gameplay
 
+### Main Menu
+
+![Main menu](documentation/main_menu_pic.png)
+
+    - Main Menu is the first screen presented to the User. It welcomes the User andpresents the game logo.
+    - There are 3 options displayed below the logo: "Let's Play", "High Scores" and "Exit".
+    - The function takes the User's imput to determine the next step.
+
+#### Exit
+
+![Exiting sequence](documentation/exiting_pic.png)
+
+    - Choosing this option allows the User to terminate running of the program.
+    - After choosing this option program takes User's input to ensure their will to quit.
+    - If User confirms exiting, an exiting sequence is printed to the screen.
+
+#### High Scores
+
+![High scores table](documentation/high_scores_pic.png)
+
+    - Displays the table of high scores and assigned to them usernames.
+    - The last 5 highest results are being updated and printed here.
+    - The scores are calculated with every game and may be cumulated if user decides to play more rounds.
+
+#### Let's play
+
+![Game modes](documentation/modes_pic.png)
+
+    - **Let's play** takes the User to the new screen that presents the logo and allows them to choose the game modes.
+    - There are two options: **Story mode** and **Plain Hangman**
+    - User's input is being taken to decide on the choosen option.
+
+### Story Mode
+
+![User's monologue](documentation/append_user_pic.png)
+
+The storyline starts with the User waking up in the dark forest. User talks to themself, being lost and confused.
+He talks us through their thoughts and experiences connected to their current situation.
+
+![Choose directions](documentation/directions_pic.png)
+
+User may decide on which direction to choose and they may decide whether or not they wish to play the hangman game
+with someone they've met on their way.
+
+![Spooky encounter](documentation/append_murderer_pic.png)
+
+The spooky man is definitely not the nicest person in the world, but he present's the game option for the User.
+That would be kind of nice of him if it wasn't a game for User's life.
+If the User chooses not to play, he dies instantly.
+
+![You died.](documentation/died_pic.png)
+
+If they choose to play, they have the rules explained to them.
+Next, they are presented the main Hangman game screen.
+
+### The Hangman
+
+![Name input](documentation/name_input_pic.png)
+
+In both options- the **Story Mode** and **Plain Hangman** the username is requested from the User prior to 
+starting the main game part, which allows to update a global variable being appended to the monologues and dialogues,
+as well as to update the score sheet after the main game.
+
+![Lost game](documentation/lost_game_pic.png)
+
+The game sets the secret random word for the user to guess. Most of the times the User gets a hint to help the game make 
+a bit easier, but sometimes the User may have bad luck and be exposed to the tricky word, when the message from the Murderer
+will be presented in place of the hint instead.
+
+The game takes the User input to update the hidden word and lists of guessed and invalid letters.
+The game warns the User if they already typed the same letter.
+
+![All letters guessed](documentation/guessed_pic.png)
+
+With the growing number of missed chances the User sees the progress of the Hangman picture.
+When the picture is complete the User is informed that the game is over and is presented his results.
+
+[End- game results](documentation/congrats_pic.png)
+
+When the User wins the game he also has presented the results, but before that the congratulations are displayed to them
+and the game asks them if they want to play again. They can play up to 3 rounds before they are released by the Murderer 
+for good.
+
+
+
 
 
 
