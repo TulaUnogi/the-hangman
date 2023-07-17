@@ -85,6 +85,7 @@ def clear_terminal():
 def small_text_bits(list):
     '''
     Displays small blocks of text one at the time
+    From stackoverflow.com/questions/20302331/typing-effect-in-python
     '''
     for text in list:
         for char in text:
