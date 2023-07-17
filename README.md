@@ -65,7 +65,7 @@ As a Designer I would like:
     Font colours have been used for both aesthetics and readability.
     - The solution for the typing effect code has been found [here](https://stackoverflow.com/questions/20302331/typing-effect-in-python) and modified for the needs of the project.
 
-## Accessing Data
+## Accessing External Data
 
 ### Google Sheet
 

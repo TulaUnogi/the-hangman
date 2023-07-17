@@ -467,7 +467,6 @@ def main_hangman_game():
     global GUESSED_LETTERS, WRONG_GUESSES, USER_CHANCES
     while USER_CHANCES > 0:
         display_hangman()
-        print(SECRET_WORD)
         display_core_game()
         print("\n" * 2)
         user_guess = input(f"{Fore.YELLOW}Enter a letter:{Style.RESET_ALL} \n")
