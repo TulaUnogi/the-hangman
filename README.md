@@ -211,6 +211,167 @@ for good.
     - PyDictionary
     - tabulate
 
+## Deployment
+
+The app has been deployed on Heroku.
+**The deployment build log:**
+
+
+-----> Building on the Heroku-22 stack
+-----> Using buildpacks:
+       1. heroku/python
+       2. heroku/nodejs
+-----> Python app detected
+-----> No Python version was specified. Using the buildpack default: python-3.11.4
+       To use a different version, see: https://devcenter.heroku.com/articles/python-runtimes
+-----> Installing python-3.11.4
+-----> Installing pip 23.1.2, setuptools 67.8.0 and wheel 0.40.0
+-----> Installing SQLite3
+-----> Installing requirements with pip
+       Collecting cachetools==5.3.1 (from -r requirements.txt (line 1))
+         Downloading cachetools-5.3.1-py3-none-any.whl (9.3 kB)
+       Collecting click==8.1.5 (from -r requirements.txt (line 2))
+         Downloading click-8.1.5-py3-none-any.whl (98 kB)
+       Collecting colorama==0.4.6 (from -r requirements.txt (line 3))
+         Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+       Collecting futures==3.0.5 (from -r requirements.txt (line 4))
+         Downloading futures-3.0.5.tar.gz (25 kB)
+         Preparing metadata (setup.py): started
+         Preparing metadata (setup.py): finished with status 'done'
+       Collecting google-auth==2.22.0 (from -r requirements.txt (line 5))
+         Downloading google_auth-2.22.0-py2.py3-none-any.whl (181 kB)
+       Collecting google-auth-oauthlib==1.0.0 (from -r requirements.txt (line 6))
+         Downloading google_auth_oauthlib-1.0.0-py2.py3-none-any.whl (18 kB)
+       Collecting goslate==1.5.4 (from -r requirements.txt (line 7))
+         Downloading goslate-1.5.4.tar.gz (14 kB)
+         Preparing metadata (setup.py): started
+         Preparing metadata (setup.py): finished with status 'done'
+       Collecting gspread==5.10.0 (from -r requirements.txt (line 8))
+         Downloading gspread-5.10.0-py3-none-any.whl (44 kB)
+       Collecting oauthlib==3.2.2 (from -r requirements.txt (line 9))
+         Downloading oauthlib-3.2.2-py3-none-any.whl (151 kB)
+       Collecting pyasn1==0.5.0 (from -r requirements.txt (line 10))
+         Downloading pyasn1-0.5.0-py2.py3-none-any.whl (83 kB)
+       Collecting pyasn1-modules==0.3.0 (from -r requirements.txt (line 11))
+         Downloading pyasn1_modules-0.3.0-py2.py3-none-any.whl (181 kB)
+       Collecting PyDictionary==2.0.1 (from -r requirements.txt (line 12))
+         Downloading PyDictionary-2.0.1-py3-none-any.whl (6.1 kB)
+       Collecting requests-oauthlib==1.3.1 (from -r requirements.txt (line 13))
+         Downloading requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+       Collecting rsa==4.9 (from -r requirements.txt (line 14))
+         Downloading rsa-4.9-py3-none-any.whl (34 kB)
+       Collecting tabulate==0.9.0 (from -r requirements.txt (line 15))
+         Downloading tabulate-0.9.0-py3-none-any.whl (35 kB)
+       Collecting six>=1.9.0 (from google-auth==2.22.0->-r requirements.txt (line 5))
+         Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+       Collecting urllib3<2.0 (from google-auth==2.22.0->-r requirements.txt (line 5))
+         Downloading urllib3-1.26.16-py2.py3-none-any.whl (143 kB)
+       Collecting bs4 (from PyDictionary==2.0.1->-r requirements.txt (line 12))
+         Downloading bs4-0.0.1.tar.gz (1.1 kB)
+         Preparing metadata (setup.py): started
+         Preparing metadata (setup.py): finished with status 'done'
+       Collecting requests (from PyDictionary==2.0.1->-r requirements.txt (line 12))
+         Downloading requests-2.31.0-py3-none-any.whl (62 kB)
+       Collecting charset-normalizer<4,>=2 (from requests->PyDictionary==2.0.1->-r requirements.txt (line 12))
+         Downloading charset_normalizer-3.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (199 kB)
+       Collecting idna<4,>=2.5 (from requests->PyDictionary==2.0.1->-r requirements.txt (line 12))
+         Downloading idna-3.4-py3-none-any.whl (61 kB)
+       Collecting certifi>=2017.4.17 (from requests->PyDictionary==2.0.1->-r requirements.txt (line 12))
+         Downloading certifi-2023.5.7-py3-none-any.whl (156 kB)
+       Collecting beautifulsoup4 (from bs4->PyDictionary==2.0.1->-r requirements.txt (line 12))
+         Downloading beautifulsoup4-4.12.2-py3-none-any.whl (142 kB)
+       Collecting soupsieve>1.2 (from beautifulsoup4->bs4->PyDictionary==2.0.1->-r requirements.txt (line 12))
+         Downloading soupsieve-2.4.1-py3-none-any.whl (36 kB)
+       Building wheels for collected packages: futures, goslate, bs4
+         Building wheel for futures (setup.py): started
+         Building wheel for futures (setup.py): finished with status 'done'
+         Created wheel for futures: filename=futures-3.0.5-py3-none-any.whl size=14069 sha256=ad0ca45c5efe907bed9e4714eca3b026798a2a40a3f94b15fe3e137e21f359c1
+         Stored in directory: /tmp/pip-ephem-wheel-cache-nbxqbu2j/wheels/66/cb/37/51fe32ecb9068869196ce81111bdfe82e6ecb53c889362f81b
+         Building wheel for goslate (setup.py): started
+         Building wheel for goslate (setup.py): finished with status 'done'
+         Created wheel for goslate: filename=goslate-1.5.4-py3-none-any.whl size=11579 sha256=aafaa95bad34547f0ea7041a45c7a7431e3a149332606d7fdfb091bd5e6fae97
+         Stored in directory: /tmp/pip-ephem-wheel-cache-nbxqbu2j/wheels/b6/48/7a/e7458e7a110a5525687dd17a52d3e42c157a8d22a2c4d5e840
+         Building wheel for bs4 (setup.py): started
+         Building wheel for bs4 (setup.py): finished with status 'done'
+         Created wheel for bs4: filename=bs4-0.0.1-py3-none-any.whl size=1257 sha256=a9e1e1fe9695cd240e16a599478326951b15dbea2a88af5d96e582b7657dd5c5
+         Stored in directory: /tmp/pip-ephem-wheel-cache-nbxqbu2j/wheels/d4/c8/5b/b5be9c20e5e4503d04a6eac8a3cd5c2393505c29f02bea0960
+       Successfully built futures goslate bs4
+       Installing collected packages: futures, urllib3, tabulate, soupsieve, six, pyasn1, oauthlib, idna, goslate, colorama, click, charset-normalizer, certifi, cachetools, rsa, requests, pyasn1-modules, beautifulsoup4, requests-oauthlib, google-auth, bs4, PyDictionary, google-auth-oauthlib, gspread
+       Successfully installed PyDictionary-2.0.1 beautifulsoup4-4.12.2 bs4-0.0.1 cachetools-5.3.1 certifi-2023.5.7 charset-normalizer-3.2.0 click-8.1.5 colorama-0.4.6 futures-3.0.5 google-auth-2.22.0 google-auth-oauthlib-1.0.0 goslate-1.5.4 gspread-5.10.0 idna-3.4 oauthlib-3.2.2 pyasn1-0.5.0 pyasn1-modules-0.3.0 requests-2.31.0 requests-oauthlib-1.3.1 rsa-4.9 six-1.16.0 soupsieve-2.4.1 tabulate-0.9.0 urllib3-1.26.16
+-----> Node.js app detected
+       
+-----> Creating runtime environment
+       
+       NPM_CONFIG_LOGLEVEL=error
+       NODE_VERBOSE=false
+       NODE_ENV=production
+       NODE_MODULES_CACHE=true
+       
+-----> Installing binaries
+       engines.node (package.json):  unspecified
+       engines.npm (package.json):   unspecified (use default)
+       
+       Resolving node version 18.x...
+       Downloading and installing node 18.16.1...
+       Using default npm version: 9.5.1
+       
+-----> Installing dependencies
+       Installing node modules (package.json)
+       
+       added 9 packages, and audited 10 packages in 4s
+       
+       4 vulnerabilities (1 moderate, 1 high, 2 critical)
+       
+       To address issues that do not require attention, run:
+         npm audit fix
+       
+       To address all issues possible (including breaking changes), run:
+         npm audit fix --force
+       
+       Some issues need review, and may require choosing
+       a different dependency.
+       
+       Run `npm audit` for details.
+       npm notice 
+       npm notice New minor version of npm available! 9.5.1 -> 9.8.0
+       npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.8.0>
+       npm notice Run `npm install -g npm@9.8.0` to update!
+       npm notice 
+       
+-----> Build
+       
+-----> Caching build
+       - node_modules
+       
+-----> Pruning devDependencies
+       
+       up to date, audited 10 packages in 249ms
+       
+       4 vulnerabilities (1 moderate, 1 high, 2 critical)
+       
+       To address issues that do not require attention, run:
+         npm audit fix
+       
+       To address all issues possible (including breaking changes), run:
+         npm audit fix --force
+       
+       Some issues need review, and may require choosing
+       a different dependency.
+       
+       Run `npm audit` for details.
+       
+-----> Build succeeded!
+-----> Discovering process types
+       Procfile declares types -> web
+-----> Compressing...
+       Done: 70.5M
+-----> Launching...
+       Released v5
+       https://the-hangman-by-tulaunogi-04f645de319a.herokuapp.com/ deployed to Heroku
+
+
+       
+
 Special thanks for my Mentor Narender Singh for his help, support and patience!
 
 
