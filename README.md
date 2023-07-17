@@ -179,7 +179,37 @@ for good.
     - Adding a categories would be a good addition. While that was initially the plan, I reverted from it to try the approach
     with the external API. For this moment I'm still searching for the API that would handle multiple categories.
 
-    
+## Technologies Used
+
+### Programming languages
+
+    - [HTML5](documentation/directions_pic.png)
+    - [CSS3](https://en.wikipedia.org/wiki/CSS)
+    - [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+
+### Other
+
+    - [Github](https://github.com/) - storing the code and version control
+    - [Codeanywhere](https://app.codeanywhere.com/) - initially used to write and commit the code
+    - [Gitpod](https://www.gitpod.io/) - used after Codeanywhere had issues with running the workspace
+    - [Lucid Chart](https://www.lucidchart.com/pages/)- used to create the flow chart
+    - [Google Sheets](https://www.google.co.uk/sheets/about/)- for storing and accessing the scores data
+    - [Heroku](https://dashboard.heroku.com/apps) - for deploying the project
+
+### Python Libraries Used
+
+    - Colorama
+    - sys
+    - os
+    - time
+    - requests
+    - gspread
+    - google.oauth
+    - math
+    - PyDictionary
+    - tabulate
+
+Special thanks for my Mentor Narender Singh for his help, support and patience!
 
 
 
