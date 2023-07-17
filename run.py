@@ -431,6 +431,7 @@ def offer_play_again():
     play_again = input(f"""{Fore.YELLOW}{Style.BRIGHT}PLAY AGAIN? Y / N
     {Style.RESET_ALL} \n""")
     if play_again == "Y".lower():
+        clear_terminal()
         GAME_ROUND = GAME_ROUND + 1
         handle_more_rounds()
     elif play_again == "N".lower():
@@ -464,6 +465,7 @@ def main_hangman_game():
     - display the hangman's tree picture
     """
     global GUESSED_LETTERS, WRONG_GUESSES, USER_CHANCES
+    clear_terminal()
     while USER_CHANCES > 0:
         display_hangman()
         display_core_game()
@@ -551,7 +553,6 @@ def display_menu_options():
 
 def exiting_sequence():
     # Prints the exiting sequence.
- 
     clear_terminal()
     sleep(1)
     exiting = f"{Fore.YELLOW}{Style.BRIGHT}Exiting in progress:\n"
